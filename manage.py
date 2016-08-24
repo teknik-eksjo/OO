@@ -10,11 +10,12 @@ def cli():  # NOQA
 
 
 @cli.command()
+@click.option('--only', '-o', multiple=True)
 @click.option('--coverage', 'with_coverage', is_flag=True)
 @click.option('--no-html', is_flag=True)
 @click.option('--no-report', is_flag=True)
 @click.option('--verbose', '-v', is_flag=True)
-def test(with_coverage, no_html, no_report, verbose):
+def test(with_coverage, no_html, no_report, verbose, only):
     """Run the tests."""
     if with_coverage:
         # Initialize coverage.py.
@@ -23,12 +24,21 @@ def test(with_coverage, no_html, no_report, verbose):
                                 source=[APP_FOLDER])
         COV.start()
 
-    # Run all unit tests found in tests folder.
-    import pytest
-    if verbose:
-        exit_code = pytest.main(['tests', '-v'])
+    # Decide what arguments to use.
+    args = []
+    if only:
+        for name in only:
+            args.append('tests/test_{}.py'.format(name))
     else:
-        exit_code = pytest.main(['tests'])
+        args.append('tests')
+
+    if verbose:
+        args.append('-v')
+
+
+    # Invoke pytest
+    import pytest
+    exit_code = pytest.main(args)
 
     if with_coverage:
         # Sum up the results of the code coverage analysis.
