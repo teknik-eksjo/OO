@@ -7,6 +7,7 @@ def test_rational_number_denominator_zero():
         r = RN(7, 0)
         r = RN(11, 0)
 
+
 def test_rational_number_reduce():
     a = RN(12, 6)
     a._reduce()
@@ -14,9 +15,10 @@ def test_rational_number_reduce():
 
     b = RN(3, 12)
     b._reduce()
-    assert a.__str__() == '1/4'
+    assert b.__str__() == '1/4'
 
 
+@pytest.mark.skip('not yet done')
 def test_rational_number_equal():
     a = RN(4, 3)
     b = RN(4, 3)
@@ -29,6 +31,7 @@ def test_rational_number_equal():
     assert not c == b
 
 
+@pytest.mark.skip('not yet done')
 def test_rational_number_addition():
     a = RN(4, 3)
     b = RN(8, 3)
@@ -41,6 +44,7 @@ def test_rational_number_addition():
     assert d + e == f
 
 
+@pytest.mark.skip('not yet done')
 def test_rational_number_subtraction():
     a = RN(5, 4)
     b = RN(4, 4)
@@ -53,6 +57,7 @@ def test_rational_number_subtraction():
     assert d - e == f
 
 
+@pytest.mark.skip('not yet done')
 def test_rational_number_multiplication():
     a = RN(3, 5)
     b = RN(7, 5)
@@ -65,6 +70,7 @@ def test_rational_number_multiplication():
     assert d * e == f
 
 
+@pytest.mark.skip('not yet done')
 def test_rational_number_division():
     a = RN(3, 5)
     b = RN(6, 5)

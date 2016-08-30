@@ -51,9 +51,9 @@ class RationalNumber():
         self.d = denominator
 
     def _reduce(self):
-        common = gcd(self.n, self.d)
-        self.n = self.n / common
-        self.d = self.d / common
+        common = int(gcd(self.n, self.d))
+        self.n = self.n // common
+        self.d = self.d // common
 
     def __repr__(self):
         return '<RationalNumber: {}/{}>'.format(self.n, self.d)
