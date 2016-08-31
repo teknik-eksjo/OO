@@ -9,13 +9,8 @@ def test_rational_number_denominator_zero():
 
 
 def test_rational_number_reduce():
-    a = RN(12, 6)
-    a._reduce()
-    assert a.__str__() == '2/1'
-
-    b = RN(3, 12)
-    b._reduce()
-    assert b.__str__() == '1/4'
+    assert RN._reduce(12, 6).__str__() == '2/1'
+    assert RN._reduce(3, 12).__str__() == '1/4'
 
 
 @pytest.mark.skip('not yet done')

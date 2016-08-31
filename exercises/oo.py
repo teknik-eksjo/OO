@@ -50,10 +50,15 @@ class RationalNumber():
         self.n = numerator
         self.d = denominator
 
-    def _reduce(self):
-        common = int(gcd(self.n, self.d))
-        self.n = self.n // common
-        self.d = self.d // common
+    @staticmethod
+    def _reduce(n, d):
+        common = int(gcd(n, d))
+        n = n // common
+        d = d // common
+        return RationalNumber(n, d)
+
+    def __eq__(self, other):
+        return self.n == other.n and self.d == other.d
 
     def __repr__(self):
         return '<RationalNumber: {}/{}>'.format(self.n, self.d)
