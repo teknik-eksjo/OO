@@ -10,8 +10,8 @@ def test_circle_attributes():
     assert c1.color == 'red'
 
     c2 = Circle(10, 'blue')
-    assert c1.radius == 10
-    assert c1.color == 'blue'
+    assert c2.radius == 10
+    assert c2.color == 'blue'
 
 
 def test_circle_methods():
