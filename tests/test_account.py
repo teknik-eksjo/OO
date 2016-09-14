@@ -18,9 +18,17 @@ def test_minimum_balance_account():
     assert account.deposit(25) == 25
     assert account.deposit(100) == 125
     assert account.withdraw(20) == 105
+
     with pytest.raises(ValueError):
         account.withdraw(10)
     assert account.balance == 105
+
+    assert account.withdraw(5) == 100
+    assert account.deposit(10) == 110
+
+    with pytest.raises(ValueError):
+        account.withdraw(11)
+    assert account.balance == 110
 
 
 def test_minimum_balance_account_is_subclass():

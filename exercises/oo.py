@@ -1,4 +1,4 @@
-from math import gcd
+from math import gcd, pi
 
 
 class Circle():
@@ -10,8 +10,19 @@ class Circle():
     Klassen ska ha metoderna `diameter()` och `area()` som returnerar
     lämpliga värden.
     """
-    pass
 
+    def __init__(self, radius, color = 'red'):
+        """Initiering med `radius` och `color`."""
+        self.color = color  # attributes
+        self.radius = radius
+
+    def diameter(self):  # methods
+        diameter = (self.radius * 2)
+        return diameter
+
+    def area(self):
+        area = (self.radius * self.radius) * pi
+        return area
 
 class BankAccount():
     """Implementation av klassen `BankAccount`.
@@ -22,10 +33,20 @@ class BankAccount():
     sätta in (`deposit`)och ta ut (`withdraw`) pengar från kontot. Båda dessa
     ska returnera aktuell kontobalans efter operationen.
     """
-    pass
+
+    def __init__(self, balance = 0):
+        self.balance = balance
+
+    def deposit(self, value):
+        self.balance = self.balance + value
+        return self.balance
+
+    def withdraw(self, value):
+        self.balance = self.balance - value
+        return self.balance
 
 
-class MinimumBalanceAccount():
+class MinimumBalanceAccount(BankAccount):
     """Implementation av klassen `MinimumBalanceAccount`.
 
     Klassen ska ärva av `BankAccount` och initieras med ett attribut
@@ -34,7 +55,16 @@ class MinimumBalanceAccount():
     När man försöker ta ut mer pengar än kontobalansen ska ett
     `ValueError`-exception kastas.
     """
-    pass
+    def __init__(self, minimum_balance):
+        self.minimum_balance = minimum_balance
+        self.balance = 0
+
+    def withdraw(self, value):
+        if self.balance - value >= self.minimum_balance:
+            self.balance = self.balance - value
+            return self.balance
+        else:
+            raise ValueError
 
 
 class RationalNumber():
@@ -50,13 +80,44 @@ class RationalNumber():
         self.n = numerator
         self.d = denominator
 
-    def _reduce(self):
-        common = int(gcd(self.n, self.d))
-        self.n = self.n // common
-        self.d = self.d // common
+    @staticmethod
+    def _reduce(n, d):
+        common = int(gcd(n, d))
+        n = n // common
+        d = d // common
+        return RationalNumber(n, d)
+
+    def __eq__(self, other):
+        return self.n == other.n and self.d == other.d
+
+
+    def __add__(self, other):
+        n = self.n * other.d + other.n * self.d
+        d = self.d * other.d
+        return RationalNumber._reduce(n, d)
+
+
+    def __sub__(self, other):
+        n = self.n * other.d - other.n * self.d
+        d = self.d * other.d
+        return RationalNumber._reduce(n, d)
+
+
+    def __mul__(self, other):
+        n = self.n * other.n
+        d = self.d * other.d
+        return RationalNumber._reduce(n, d)
+
+
+    def __truediv__(self, other):
+        n = self.n * other.d
+        d = self.d * other.n
+        return RationalNumber._reduce(n, d)
+
 
     def __repr__(self):
         return '<RationalNumber: {}/{}>'.format(self.n, self.d)
+
 
     def __str__(self):
         return '{}/{}'.format(self.n, self.d)
