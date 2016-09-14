@@ -101,7 +101,7 @@ class RationalNumber():
         n = self.n * other.d - other.n * self.d
         d = self.d * other.d
         return RationalNumber._reduce(n, d)
-
+# en kommentar
 
     def __mul__(self, other):
         n = self.n * other.n
