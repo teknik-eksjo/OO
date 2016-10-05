@@ -35,7 +35,6 @@ def test(with_coverage, no_html, no_report, verbose, only):
     if verbose:
         args.append('-v')
 
-
     # Invoke pytest
     import pytest
     exit_code = pytest.main(args)

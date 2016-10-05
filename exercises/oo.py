@@ -44,6 +44,7 @@ class RationalNumber():
     addition, subtraktion, multiplikation, division och jämförelse.
     """
     def __init__(self, numerator, denominator):
+        """Initiera och se till att nämnaren inte är 0."""
         if not denominator:
             raise ValueError
 
@@ -52,16 +53,20 @@ class RationalNumber():
 
     @staticmethod
     def _reduce(n, d):
+        """Förkorta bråket n/d, returnera RationalNumber-objekt."""
         common = int(gcd(n, d))
         n = n // common
         d = d // common
         return RationalNumber(n, d)
 
     def __eq__(self, other):
+        """Jämför med ett annat RationalNumber-objekt."""
         return self.n == other.n and self.d == other.d
 
     def __repr__(self):
+        """Representation av objektet."""
         return '<RationalNumber: {}/{}>'.format(self.n, self.d)
 
     def __str__(self):
+        """Textrepresentation av objektet."""
         return '{}/{}'.format(self.n, self.d)

@@ -2,6 +2,7 @@ import pytest
 from exercises.oo import Circle
 
 
+@pytest.mark.skip('Not implemented yet.')
 def test_circle_attributes():
     c1 = Circle(10)
     assert hasattr(c1, 'radius')
@@ -14,6 +15,7 @@ def test_circle_attributes():
     assert c2.color == 'blue'
 
 
+@pytest.mark.skip('Not implemented yet.')
 def test_circle_methods():
     from math import pi
 
