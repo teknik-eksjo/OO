@@ -2,6 +2,7 @@ import pytest
 from exercises.oo import BankAccount, MinimumBalanceAccount
 
 
+@pytest.mark.skip('Not implemented yet.')
 def test_bank_account():
     account = BankAccount()
     assert hasattr(account, 'balance')
@@ -11,6 +12,7 @@ def test_bank_account():
     assert account.withdraw(50) == -25
 
 
+@pytest.mark.skip('Not implemented yet.')
 def test_minimum_balance_account():
     account = MinimumBalanceAccount(100)
     assert hasattr(account, 'balance')
@@ -23,5 +25,6 @@ def test_minimum_balance_account():
     assert account.balance == 105
 
 
+@pytest.mark.skip('Not implemented yet.')
 def test_minimum_balance_account_is_subclass():
     assert issubclass(MinimumBalanceAccount, BankAccount)

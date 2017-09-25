@@ -34,19 +34,13 @@ tydlig och köra :code:`python3` istället för :code:`python`.
 
 .. code-block::
 
-  python -m venv venv
+  pyvenv venv
 
 Aktivera den virtuella körmiljön:
 
 .. code-block::
 
   . venv/bin/activate
-
-Om du använder Windows:
-
-.. code-block::
-
-  venv/Script/activate.bat
 
 Installera de paket som behövs för uppgiften:
 
